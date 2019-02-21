@@ -16,4 +16,12 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('welcome')
+let count = 0;
+
+Route.on('/').render('index')
+Route.post('/increment', function(req,res) {
+  res.send(edge.render('counter', {count: count++}))
+  console.log('life');
+})
+// Route.post('/increment')
+Route.on('/counter').render('counter', {count: 15} )
