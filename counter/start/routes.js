@@ -15,13 +15,23 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
-
+//const Controller = require('@adonis/controller');
+// console.log(Controller.count.val);
+// let count = Controller.count.val;
 let count = 0;
 
-Route.on('/').render('index')
-Route.post('/increment', function(req,res) {
-  res.send(edge.render('counter', {count: count++}))
-  console.log('life');
-})
+Route.on('/').render('index');
+// Route.post('/increment', Controller.increment);
+
+ Route.post('/increment', ({view}) => {
+  count++;
+  return view.render('counter', {count});
+ });
+ Route.post('/decrement', ({view}) => {
+  count--;
+  return view.render('counter', {count});
+ });
+
 // Route.post('/increment')
-Route.on('/counter').render('counter', {count: 15} )
+Route.on('/counter').render('counter', {count});
+

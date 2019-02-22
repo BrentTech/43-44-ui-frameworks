@@ -11,8 +11,18 @@
     <div class="title"></div>
     <div class="subtitle">
       <h1>Here is a counter:{{count}}</h1>
-      <button method="POST" action="/increment" type="submit">Increment</button>
-      <button method="POST" action="/decrement" type="submit">Decrement</button>
+      <form action="./increment" method="POST">
+
+        {{csrfField() }}
+        <input type="hidden" name="count" value="0">
+        <input type="submit" name="do" value="increment">
+      </form>
+      <form action="./decrement" method="POST">
+
+        {{csrfField() }}
+        <input type="hidden" name="count" value="0">
+        <input type="submit" name="do" value="decrement">
+      </form>
     </div>
   </section>
 </body>
